@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="media/LoomLogo.png" width="400" alt="Loom Logo">
+</div>
+
 # 🧵 Loom – Akıllı Sağlık Verisi Entegrasyon Gateway'i
 
 ## 🇹🇷 Türkçe Açıklama
