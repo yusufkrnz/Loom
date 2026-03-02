@@ -1,7 +1,8 @@
 # Ignore all files
 *
-# Except README.md
+# Except README.md and the new logo
 !README.md
+!media/LoomLogo.png
 # Keep git management files
 !.gitignore
 !.git/
