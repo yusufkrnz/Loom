@@ -1,53 +1,30 @@
 <div align="center">
-  <img src="media/LoomLogo.png" width="400" alt="Loom Logo">
+  <img src="https://raw.githubusercontent.com/yusufkrnz/Loom/main/media/LoomLogo.png" width="400" alt="Loom Logo">
 </div>
 
-# 🧵 Loom – Akıllı Sağlık Verisi Entegrasyon Gateway'i
+# 🧵 LOOM – Akut Klinik Karar Destek & Veri Orkestrasyon Sistemi
 
-## 🇹🇷 Türkçe Açıklama
-**Loom**, standart dışı ve karmaşık sağlık verilerini (Legacy JSON, XML, String) dünya standardı olan **HL7 FHIR** formatına dönüştüren yüksek performanslı bir ara yazılımdır.  
+**LOOM**, Türkiye’de acil servislere gelen ayakta hastaların yükünü azaltmak ve doktorları klinik riskler konusunda önceden hazırlamak için tasarlanmış katmanlı bir **Klinik Risk Orkestrasyon Sistemi**’dir. 
 
-Özellikler:
-- **FastAPI tabanlı asenkron mimari**: Yüksek performanslı ve ölçeklenebilir veri işleme.  
-- **Dinamik Mapping Motoru**: Veri alanlarını esnek bir şekilde eşler ve dönüştürür.  
-- **Otomatik Tıbbi Terminoloji Eşleme (LOINC)**: Klinik terimleri standart kodlara çevirerek veriyi “konuşabilir” hâle getirir.  
+Türkiye’de acil servislere yıllık **150–170 milyon** civarında başvuru yapılmakta olup, bu başvuruların %99’undan fazlası ambulans dışı (ayakta) gerçekleşmektedir. Başvuran hastaların yaklaşık %65’i **Yeşil (Düşük Acil)**, %35’i **Sarı (Orta Risk)** ve %1-2’si **Kırmızı (Yüksek Acil)** triyaj kategorisine girmektedir. LOOM, özellikle bu yoğunluğu yönetmek üzere uzman hekimlere kritik veri analizi sunar.
 
-> “Veri nereden gelirse gelsin, Loom onu standartlara dokur.”
+## 🧠 Temel İşlevler & Mimari
 
----
+- **Arka Plan Veri Ön-Çekimi (Pre-fetching):** Hasta triyajdan geçtiği anda HBYS ve e-Nabız dahil devlet servislerinden veri, resmî entegrasyon mantığına uygun şekilde simüle edilerek çekilir. Geçmiş reçeteler, kronik hastalıklar, operasyon geçmişi ve yakın tarihli acil başvurular anında taranır.
+- **Klinik Risk Analizi:** Hasta şikayeti ile geçmiş veriler karşılaştırılarak ilaç–ilaç/ilaç–tanı çakışmaları, **EDTB (Erken Dönem Tekrar Başvuru)** paternleri ve kronik + akut risk kesişimleri belirlenir.
+- **Dinamik Karar Destek:** Doktor hastayı çağırdığında sistem, kritik riskleri ve sayısal göstergeleri görsel olarak sunar. ML ve temporal analiz ile gözden kaçabilecek risk paternleri tespit edilir. Gerektiğinde **RAG/BERT** modelleri özetleme veya analiz katmanlarında kullanılır. 
+- **Zeka Katmanı:** Ana risk motoru deterministik kurallar, temporal/graph tabanlı analiz ve modüler İlaç Güvenliği gibi bileşenler üzerine kuruludur.
 
-## 🇺🇸 English Description
-**Loom** is a high-performance middleware designed to transform non-standard, legacy healthcare data (JSON, XML, String) into globally recognized **HL7 FHIR** resources.  
+## 🛠 Teknoloji Yığını (Planlanan)
 
-Key Features:
-- **FastAPI-driven asynchronous pipeline**: High-performance, scalable data processing.  
-- **Dynamic Mapping Engine**: Flexibly maps and transforms data fields.  
-- **Automated Medical Terminology Enrichment (LOINC)**: Converts clinical terms into standardized codes, making data “talkable.”  
+LOOM mimarisi modern ve ölçeklenebilir bir stack üzerine kurgulanmıştır:
+- **FastAPI:** Yüksek performanslı asenkron API servisleri.
+- **RabbitMQ:** Sistemler arası veri akışı ve mesajlaşma yönetimi.
+- **Docker:** Container tabanlı modüler dağıtım.
+- **Python (LoomAtlas Engine):** Klinik zeka ve veri işleme motoru.
 
-> "No matter the source, Loom weaves your data into standards."
-
----
-
-## 📌 Projenin Teknik Temeli
-- **Decoupled Architecture** – Parser ve Validator birbirinden bağımsız, kolay güncellenebilir.  
-- **Semantic Mapping Intelligence** – Veri anlamını korur ve uluslararası terminolojiye dönüştürür.  
-- **Atomic Integrity** – İşlemler ya tamamen gerçekleşir ya iptal edilir; sağlık verisi tutarlılığı garanti edilir.
+> [!NOTE]
+> **Sentetik Veri Motoru:** LOOM projesi içinde veri üretimi için **Synthea** kütüphanesi kullanılmaktadır. Bu kütüphane, Türkiye’nin demografik yapısına ve Sağlık Bakanlığı/TÜİK verilerine göre revize edilerek gerçeğe en yakın **Türk Hasta Popülasyonu** üretimi için özelleştirilmiştir. Bu bilgi sadece veri motoru kapsamında geçerlidir.
 
 ---
-
-## 🚀 Başlangıç ve Kurulum
-```bash
-# Repo klonlama
-git clone https://github.com/kullanici/loom.git
-cd loom
-
-# Sanal ortam oluşturma
-python -m venv venv
-source venv/bin/activate  # Linux / macOS
-venv\Scripts\activate     # Windows
-
-# Gereksinimleri yükleme
-pip install -r requirements.txt
-
-# Uygulamayı başlatma
-uvicorn loom.main:app --reload
+*Bu proje bir Web Dersi kapsamında geliştirilen bir Klinik Akıl simülasyonudur.*

@@ -1,0 +1,7 @@
+# Ignore all files
+*
+# Except README.md
+!README.md
+# Keep git management files
+!.gitignore
+!.git/
