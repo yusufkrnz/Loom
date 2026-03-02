@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yusufkrnz/Loom/main/media/LoomLogo.png" width="400" alt="Loom Logo">
+  <img src="media/LoomLogo.png" width="400" alt="Loom Logo">
 </div>
 
 # 🧵 LOOM – Akut Klinik Karar Destek & Veri Orkestrasyon Sistemi
